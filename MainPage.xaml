@@ -1,0 +1,87 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project_2.MainPage">
+
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Spacing" Value="10" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2196F3" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20">
+        <!-- Greeting label -->
+        <Label x:Name="greetingLabel" FontSize="20" HorizontalOptions="Center" />
+
+        <!-- Month label -->
+        <Label x:Name="monthLabel" FontSize="20" HorizontalOptions="Center" Margin="0,10,0,0" />
+        
+        <!-- Calendar grid -->
+        <Grid x:Name="calendarGrid">
+            <!-- Add rows for days of the week and 6 weeks -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <!-- Display All Events button -->
+        <Button Text="Display All Events" Clicked="OnDisplayAllEventsClicked" Margin="0,10,0,0" />
+
+        <!-- Events collection -->
+        <CollectionView x:Name="eventsCollectionView" IsVisible="False">
+            <CollectionView.Header>
+                <Label Text="Events"
+                       FontSize="18"
+                       HorizontalOptions="Center"
+                       Padding="0,10,0,0"/>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Date}" />
+                        <Label Grid.Column="1" Text="{Binding Event}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Logout button -->
+        <Button Text="Logout" Clicked="OnLogoutClicked" Margin="0,10,0,0" />
+    </StackLayout>
+</ContentPage>
